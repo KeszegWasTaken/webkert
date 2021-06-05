@@ -1,0 +1,81 @@
+<form [formGroup]="form">
+    <h3>Medication Statement felvétel</h3>
+
+    <mat-form-field class="max-width">
+        <mat-label>Páciens neve:</mat-label>
+        <input matInput placeholder="Kis János" focus formControlName="subject" >
+    </mat-form-field>
+
+    <mat-card class="margin-bottom" formArrayName="medication">
+        <mat-card-header>
+          <mat-card-title>Gyógyszerek</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <button mat-raised-button color="secondary" class="max-width margin-bottom" (click)="addMedication()">
+            <mat-icon>add</mat-icon>
+            Név
+          </button>
+          <span *ngFor="let item of getMedication.controls; let i = index" class="max-width" style="display: flex;">
+            <mat-form-field [formGroupName]="i" style="flex: 1 1;">
+              <mat-label>Gyógyszer {{i + 1}}.</mat-label>
+              <input type="text" name="medication" formControlName="code" matInput>
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeMedication(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-form-field class="max-width">
+        <mat-label>Státusz:</mat-label>
+        <mat-select formControlName="status">
+          <mat-option *ngFor="let statuses of status" [value]="statuses">
+            {{statuses}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="max-width">
+      <mat-label>Kategória:</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let categories of category" [value]="categories">
+          {{categories}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+
+
+    
+    <mat-card class="margin-bottom" formArrayName="effective">
+        <mat-card-header>
+          <mat-card-title>Dátumok</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <button mat-raised-button color="secondary" class="max-width margin-bottom" (click)="addDate()">
+            <mat-icon>add</mat-icon>
+            Dátum
+          </button>
+          <span *ngFor="let item of getDate.controls; let i = index" class="max-width" style="display: flex;">
+            <mat-form-field [formGroupName]="i" style="flex: 1 1;">
+              <mat-label>Dátum {{i + 1}}.</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="effectiveDateTime" autocomplete="new-password">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeDate(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-form-field class="max-width">
+        <mat-label>Dózis:</mat-label>
+        <input matInput placeholder="1 tabletta reggelente" focus formControlName="dosage" >
+    </mat-form-field>
+    <div style="display: flex; justify-content: flex-end;">
+        <button mat-button (click)="dialogRef.close()" class="margin-right">MÉGSEM</button>
+        <button mat-button [mat-dialog-close]="form.value" [disabled]="form.invalid">FELVÉTEL</button>
+    </div>
+</form>

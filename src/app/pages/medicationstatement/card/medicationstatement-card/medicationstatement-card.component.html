@@ -1,0 +1,63 @@
+<mat-card *ngIf="medicationstatement" (click)="getMedicationStatement.emit(medicationstatement)" appOnHover>
+    <mat-card-header>
+        
+        <mat-card-title *ngFor="let item of medications;let i = index"><span *ngIf="i%2==0">{{item.code}}</span></mat-card-title>
+        <mat-card-subtitle *ngIf="medicationstatement.status">{{medicationstatement.status}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{medicationstatement.category}}</p>
+    </mat-card-content>
+</mat-card>
+
+<!-- <form [formGroup]="form">
+    <h3>Medication Statement felvétel</h3>
+
+    <mat-form-field class="max-width">
+        <mat-label>Páciens neve:</mat-label>
+        <input matInput placeholder="Kis János" focus formControlName="subject" >
+    </mat-form-field>
+
+    <mat-card class="margin-bottom" formArrayName="medication">
+        <mat-card-header>
+          <mat-card-title>Gyógyszerek</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span *ngFor="let item of getMedication.controls; let i = index" class="max-width" style="display: flex;">
+            <mat-form-field [formGroupName]="i" style="flex: 1 1;">
+              <mat-label>Gyógyszer {{i + 1}}.</mat-label>
+              <input type="text" name="medication" formControlName="code" matInput>
+            </mat-form-field>
+          </span>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-form-field class="max-width">
+        <mat-label>Státusz:</mat-label>
+        <input matInput placeholder="Pl. active" focus formControlName="status" >
+    </mat-form-field>
+
+    <mat-form-field class="max-width">
+        <mat-label>Kategória:</mat-label>
+        <input matInput placeholder="Pl. community" focus formControlName="category" >
+    </mat-form-field>
+
+
+    
+    <mat-card class="margin-bottom" formArrayName="effective">
+        <mat-card-header>
+          <mat-card-title>Dátumok</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span *ngFor="let item of getDate.controls; let i = index" class="max-width" style="display: flex;">
+            <mat-form-field [formGroupName]="i" style="flex: 1 1;">
+              <mat-label>Dátum {{i + 1}}.</mat-label>
+              <input type="text" name="date" formControlName="effectiveDateTime" matInput>
+            </mat-form-field>
+          </span>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-form-field class="max-width">
+        <mat-label>Dózis:</mat-label>
+        <input matInput placeholder="1 tabletta reggelente" focus formControlName="dosage" >
+    </mat-form-field> -->

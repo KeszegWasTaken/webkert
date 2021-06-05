@@ -1,0 +1,10 @@
+<app-container>
+    <h1>Webkert - Medication Statement felvételi oldal</h1>
+
+    <div class="splash-category">
+        <mat-card *ngFor="let item of pageswitch" matRipple matRippleColor='cyan' [routerLink]="[item.url]" appOnHover>
+            {{item.title}}
+        </mat-card>
+        
+    </div>
+</app-container>

@@ -1,3 +1,4 @@
+import { TitleService } from './services/routing/title.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'webkert';
+  constructor(private TitleService: TitleService){
+    this.TitleService.refreshTitle();
+  }
 }

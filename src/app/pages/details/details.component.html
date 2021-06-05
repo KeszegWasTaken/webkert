@@ -1,0 +1,24 @@
+<mat-card>
+    <div style="display: flex;">
+      <span style="flex: 1 1;"></span>
+      <button mat-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="det-title">
+    </div>
+</mat-card>
+  <mat-tab-group  *ngIf="inData$ | async as item">
+    <mat-tab label="Áttekintés">
+        <mat-card>
+            <p *ngFor="let item of medications; let k = index">Gyógyszer: {{item.code}}, Szedés kezdete: {{dates[k].effectiveDateTime.seconds*1000 | date: 'yyyy.MM.dd'}}<br></p>
+            <p>Név: {{item.subject}}</p>
+            <p>Státusz: {{item.status}}</p>
+            <p>Kategória: {{item.category}}</p>
+            <p>Dózis: {{item.dosage}}</p>
+        </mat-card>
+        <button mat-button color="warn" (click)="delete('medicationstatements', item.id)">
+          Törlés <mat-icon>delete</mat-icon>
+        </button>
+    </mat-tab>
+  </mat-tab-group>
